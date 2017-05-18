@@ -10,18 +10,24 @@ input = ARGV
 @user_answers = []
 
 
-
+#returns random answer from array of answers
+# @return [String] randomly selected answer
 def get_answer
     answer_set = @answers + @user_answers
     answer_set.sample
 end
 
+#validates user input for which answer they want to remove
+# @param [String] selected digit from list of user inputed answers
+# @return [Boolean] if answer is valid or not
 def validate_answer(answer)
     num_of_answers = @user_answers.length
     puts num_of_answers
     !!(answer =~ /[1-#{num_of_answers}]/)
 end
 
+#prints all answers in magic eight ball
+# @return [nil]
 def print_all
     puts "\n--------------------"
     puts "All Magic Eight Ball answers \n"
@@ -30,6 +36,8 @@ def print_all
     display_menu
 end
 
+#list user submitted questions allowing them to remove one of them
+# @return [nil]
 def remove_answer
     puts "List of user submitted answers \n\n"
     if @user_answers.empty?
@@ -52,6 +60,9 @@ def remove_answer
     end
 end
 
+
+#gets users inputed answer to add ensuring it is not a duplicate
+# @return [nil]
 def add_answer
 
     puts "What answer would you like to add to the Magin Eight Ball?"
@@ -69,6 +80,8 @@ def add_answer
     display_menu
 end
 
+#gets user question
+# @retrun [nil]
 def get_question
     puts "What is your yes or no question?"
     question = gets.chomp
@@ -79,12 +92,13 @@ def get_question
     puts "thinking... \n\n"
     sleep(1)
 
-
-    puts "#{get_answer.capitalize} \n\n"
+    puts "Magic Eight Ball says: #{get_answer.capitalize} \n\n"
 
     display_menu
 end
 
+# main display menu
+# @return [nil]
 def display_menu
     puts "------------------------------------------"
     puts "What would you like to do \n\n"
@@ -115,12 +129,16 @@ def display_menu
     end
 end
 
+#welcomes user to the application and calls the main display menu
+# @return [nil]
 def welcome
     puts "\n\n  Welcome to the MAGIC EIGHT BALL! \n\n"
 
     display_menu
 end
 
+#check if user passed in script command to add answers before they begin
+# @return [nil]
 def eval_command_line_input(input)
     if input.first == "answers"
         input.clear
