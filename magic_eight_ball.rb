@@ -1,3 +1,5 @@
+input = ARGV
+
 @answers = ['you may rely on it',
 'as I see it, yes', 'yost likely', 'outlook good', 'yes', 
 'signs point to yes', 'reply hazy try again', 'ask again later',
@@ -119,6 +121,15 @@ def welcome
     display_menu
 end
 
+def eval_command_line_input(input)
+    if input.first == "answers"
+        input.clear
+        add_answer
+    else
+        input.clear
+        welcome
+    end
+    
+end
 
-
-welcome
+eval_command_line_input(input)
